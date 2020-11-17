@@ -11,13 +11,22 @@
 <body>
     <!-- UC1 -->
     <header class="header-content header">
-        <div>
+        <div class="logo-content">
             <img src="../assets/images/logo.png" alt="">
             <div>
                 <span class="emp-text">EMPLOYEE</span><br>
                 <span class="emp-text emp-payroll">PAYROLL</span>
             </div>
         </div>
+    </header>
+    <!-- UC2 -->
+    <header class="form-content">
+        <form action="#" class="form" onsubmit="save();return false">
+        <div class="row-content">
+            <label for="name" class="label text">Name</label>
+            <input type="text" name="name" id="name" placeholder="Your name.." class="name" required>
+        </div>
+        </form>
     </header>
 </body>
 </html>
