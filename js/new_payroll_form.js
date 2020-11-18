@@ -77,6 +77,15 @@ window.addEventListener('DOMContentLoaded',(event) => {
 });
 
 const save = () =>{
+    try{
+        let employeePayrollData = createEmployeePayroll();
+    } catch(e){
+        return;
+    }
+
+}
+
+const createEmployeePayroll = () => {
     let employeePayrollData = new EmployeePayrollData();
     try{
         employeePayrollData.name = getInputValueById('#name');
