@@ -84,7 +84,7 @@
         </div>
         <div class="row-content">
             <label for="startDate" class="label text">Start Date</label>
-            <div>
+            <div id="date">
                 <select name="Day" id="day">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -140,6 +140,7 @@
                     <option value="2016">2016</option>
                 </select>
             </div>
+            <error-output class="date-error" for="startDate"></error-output>
         </div>
         <div class="row-content">
             <label for="notes" class="label text">Notes</label>
@@ -148,7 +149,7 @@
         <div class="buttonParent">
             <a href="./home.html" class="resetButton button cancelButton">Cancel</a>
             <div class="submit-reset">
-                <button type="submit" class="submitButton button" id="submitButton" onclick="save()">Submit</button>
+                <button type="submit" class="submitButton button" id="submitButton" onclick="save(event)">Submit</button>
                 <button type="reset" class="resetButton button">Reset</button>
             </div>
         </div>
