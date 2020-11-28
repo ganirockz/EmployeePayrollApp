@@ -106,6 +106,7 @@ const createOrUpdateEmployeePayroll = () =>{
             throw error;
         });
 }
+
 const setEmployeePayrollObject = ()=>{
     if(!isUpdate && site_properties.use_local_storage.match("true")){
         employeePayrollObj.id = createNewEmployeeId();
