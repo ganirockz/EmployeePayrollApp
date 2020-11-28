@@ -1,13 +1,33 @@
 let empPayrollList;
+
 window.addEventListener('DOMContentLoaded',(event)=>{
-    empPayrollList = getEmployeePayrllDataFromStorage();
-    document.querySelector(".emp-count").textContent = empPayrollList.length;
-    createInnerHtml();
-    localStorage.removeItem('editEmp');
+    if(site_properties.use_local_storage.match("true")){
+    getEmployeePayrllDataFromStorage();
+    }else getEmployeePayrollDataFromServer();
 });
 
 const getEmployeePayrllDataFromStorage = () => {
-    return localStorage.getItem('EmployeePayrollList')? JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
+    empPayrollList = localStorage.getItem('EmployeePayrollList')? JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
+    processEmployeePayrollDataResponse();
+}
+
+const processEmployeePayrollDataResponse = () =>{
+    document.querySelector(".emp-count").textContent = empPayrollList.length;
+    createInnerHtml();
+    localStorage.removeItem('editEmp');    
+}
+
+const getEmployeePayrollDataFromServer = () => {
+    makeServiceCall("GET", site_properties.server_url, true)
+        .then(responseText =>{
+            empPayrollList = JSON.parse(responseText);
+            processEmployeePayrollDataResponse();
+        })
+        .catch(error => {
+            console.log("GET Error Status: "+JSON.stringify(error));
+            empPayrollList = [];
+            processEmployeePayrollDataResponse();
+        });
 }
 
 const createInnerHtml = () => {
@@ -91,3 +111,4 @@ const update = (node) => {
     localStorage.setItem("editEmp",JSON.stringify(employee));
     window.location.replace(site_properties.add_emp_payroll_page);
 }
+
